@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MitybosSportoSistema-API</name>
+    </assembly>
+    <members>
+        <member name="T:MitybosSportoSistema_API.Controllers.HomeController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.HomeController.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.HomeController.Get(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.HomeController.Post(System.String)">
+            
+        </member>
+    </members>
+</doc>
