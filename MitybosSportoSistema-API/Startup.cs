@@ -21,6 +21,8 @@ using MitybosSportoSistema_API.Services;
 //using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using AutoMapper;
+using MitybosSportoSistema_API.Mappings;
 
 namespace MitybosSportoSistema_API
 {
@@ -49,6 +51,8 @@ namespace MitybosSportoSistema_API
                     .AllowAnyHeader());
             });
 
+            services.AddAutoMapper(typeof(Maps));
+
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo 
                 { 
@@ -63,6 +67,8 @@ namespace MitybosSportoSistema_API
             });
 
             services.AddSingleton<ILoggerService, LoggerService>();
+            services.AddScoped<IProduktasRepository, ProduktasRepository>();
+
 
             services.AddControllers();
         }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MitybosSportoSistema_API.Data;
 
 namespace MitybosSportoSistema_API.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210104121520_AddTreniruote")]
+    partial class AddTreniruote
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -219,6 +221,35 @@ namespace MitybosSportoSistema_API.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("MitybosSportoSistema_API.Data.Pratimas", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Aprasymas")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PakartojimuSkaicius")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Pavadinimas")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SerijuSkaicius")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TreniruoteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TreniruoteId");
+
+                    b.ToTable("Pratimai");
+                });
+
             modelBuilder.Entity("MitybosSportoSistema_API.Data.Produktas", b =>
                 {
                     b.Property<int>("Id")
@@ -255,50 +286,6 @@ namespace MitybosSportoSistema_API.Data.Migrations
                     b.HasIndex("ReceptasId");
 
                     b.ToTable("Produktai");
-                });
-
-            modelBuilder.Entity("MitybosSportoSistema_API.Models.Ingridientas", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Kiekis")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Ingridientai");
-                });
-
-            modelBuilder.Entity("MitybosSportoSistema_API.Models.Pratimas", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Aprasymas")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PakartojimuSkaicius")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Pavadinimas")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SerijuSkaicius")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TreniruoteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TreniruoteId");
-
-                    b.ToTable("Pratimai");
                 });
 
             modelBuilder.Entity("MitybosSportoSistema_API.Models.Receptas", b =>
@@ -394,18 +381,18 @@ namespace MitybosSportoSistema_API.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MitybosSportoSistema_API.Data.Pratimas", b =>
+                {
+                    b.HasOne("MitybosSportoSistema_API.Models.Treniruote", null)
+                        .WithMany("Pratimai")
+                        .HasForeignKey("TreniruoteId");
+                });
+
             modelBuilder.Entity("MitybosSportoSistema_API.Data.Produktas", b =>
                 {
                     b.HasOne("MitybosSportoSistema_API.Models.Receptas", null)
                         .WithMany("Produktai")
                         .HasForeignKey("ReceptasId");
-                });
-
-            modelBuilder.Entity("MitybosSportoSistema_API.Models.Pratimas", b =>
-                {
-                    b.HasOne("MitybosSportoSistema_API.Models.Treniruote", null)
-                        .WithMany("DaromiPratimai")
-                        .HasForeignKey("TreniruoteId");
                 });
 #pragma warning restore 612, 618
         }

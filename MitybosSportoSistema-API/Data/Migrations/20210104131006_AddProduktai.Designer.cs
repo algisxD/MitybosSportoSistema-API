@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MitybosSportoSistema_API.Data;
 
 namespace MitybosSportoSistema_API.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210104131006_AddProduktai")]
+    partial class AddProduktai
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,21 +257,6 @@ namespace MitybosSportoSistema_API.Data.Migrations
                     b.HasIndex("ReceptasId");
 
                     b.ToTable("Produktai");
-                });
-
-            modelBuilder.Entity("MitybosSportoSistema_API.Models.Ingridientas", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Kiekis")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Ingridientai");
                 });
 
             modelBuilder.Entity("MitybosSportoSistema_API.Models.Pratimas", b =>

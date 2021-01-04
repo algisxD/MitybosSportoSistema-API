@@ -25,5 +25,16 @@
         <member name="M:MitybosSportoSistema_API.Controllers.HomeController.Post(System.String)">
             
         </member>
+        <member name="T:MitybosSportoSistema_API.Controllers.ProduktasController">
+            <summary>
+            Endpoint used to interact with the Authors in the book store's database
+            </summary>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ProduktasController.GetProduktai">
+            <summary>
+            Get all Produktai
+            </summary>
+            <returns>List of Produktai</returns>
+        </member>
     </members>
 </doc>
