@@ -36,6 +36,38 @@ namespace MitybosSportoSistema_API.Controllers
         }
 
         /// <summary>
+        /// User info endpoint
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetUserInfo([FromBody] UserGetDTO userDTO)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                var username = userDTO.Email;
+                _logger.LogInfo($"{location}: Attempted Get All Authors");
+                var user = await _userManager.FindByEmailAsync(username);
+                var role = await _userManager.GetRolesAsync(user);
+                if (user == null)
+                {
+                    _logger.LogWarn($"{location}: User with email:{username} was not found");
+                    return NotFound();
+                }
+                return Ok(new { email = username, roles = role }) ;
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
+
+        /// <summary>
         /// User login endpoint
         /// </summary>
         /// <param name="userDTO"></param>
@@ -58,7 +90,7 @@ namespace MitybosSportoSistema_API.Controllers
                     _logger.LogInfo($"{location}: {username} Successfully Authenticated");
                     var user = await _userManager.FindByEmailAsync(username);
                     var tokenString = await GenerateJSONWebToken(user);
-                    return Ok(new { token = tokenString });
+                    return Ok(new { token = tokenString, email = username }) ;
                 }
                 _logger.LogInfo($"{location}: {username} Not Authenticated: ");
                 return Unauthorized(userDTO);

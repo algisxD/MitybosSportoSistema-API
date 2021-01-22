@@ -36,6 +36,13 @@
             </summary>
             <returns>List of Produktai</returns>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.UsersController.GetUserInfo(MitybosSportoSistema_API.DTOs.UserGetDTO)">
+            <summary>
+            User info endpoint
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
         <member name="M:MitybosSportoSistema_API.Controllers.UsersController.Login(MitybosSportoSistema_API.DTOs.UserDTO)">
             <summary>
             User login endpoint
