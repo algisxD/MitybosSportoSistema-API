@@ -118,6 +118,43 @@ namespace MitybosSportoSistema_API.Controllers
             }
         }
 
+        /// <summary>
+        /// User Registration Endpoint
+        /// </summary>
+        /// <param name="userDTO"></param>
+        /// <returns></returns>
+        [Route("register")]
+        [HttpPost]
+        public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                var username = userDTO.Email;
+                var password = userDTO.Password;
+                var mainError = "";
+                _logger.LogInfo($"{location}: User registration attempted for {username}");
+                var user = new IdentityUser { Email = username, UserName = username };
+                var result = await _userManager.CreateAsync(user, password);
+
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        mainError = error.Code;
+                        _logger.LogError($"{location}: {error.Code} {error.Description}");
+                    }
+                    return RegisterError($"{location}: {username} User registration attempt failed", mainError);
+                }
+                await _userManager.AddToRoleAsync(user, "User");
+                return Ok(new { result.Succeeded });
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
         private async Task<string> GenerateJSONWebToken(IdentityUser user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
@@ -152,6 +189,21 @@ namespace MitybosSportoSistema_API.Controllers
         private ObjectResult InternalError(string message)
         {
             _logger.LogError(message);
+            return StatusCode(500, "Something went wrong. Please contact the Administrator");
+        }
+
+        private ObjectResult RegisterError(string message, string status)
+        {
+            string[] passwordErrors = {"PasswordRequiresDigit", "PasswordRequiresNonAlphanumeric", "PasswordRequiresUpper", "PasswordRequiresLower" };
+            _logger.LogError(message);
+            if(status == "DuplicateUserName")
+            {
+                return StatusCode(409, "Email already exists");
+            }
+            if(passwordErrors.Any(status.Contains))
+            {
+                return StatusCode(403, "Password does not match the criteria");
+            }
             return StatusCode(500, "Something went wrong. Please contact the Administrator");
         }
     }
