@@ -9,11 +9,11 @@ namespace MitybosSportoSistema_API.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        DbSet<Pratimas> Pratimai { get; set; }
-        DbSet<Receptas> Receptai { get; set; }
-        DbSet<Treniruote> Treniruotes { get; set; }
+        public DbSet<Pratimas> Pratimai { get; set; }
+        public DbSet<Receptas> Receptai { get; set; }
+        public DbSet<Treniruote> Treniruotes { get; set; }
         public DbSet<Produktas> Produktai { get; set; }
-        DbSet<Ingridientas> Ingridientai { get; set; }
+        public DbSet<Ingridientas> Ingridientai { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
