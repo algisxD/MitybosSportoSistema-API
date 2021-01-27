@@ -12,6 +12,6 @@ namespace MitybosSportoSistema_API.Models
     {
         public int Id { get; set; }
         public double Kiekis { get; set; }
-        Produktas Produktas { get; set; }
+        List<Produktas> Produktas { get; set; }
     }
 }

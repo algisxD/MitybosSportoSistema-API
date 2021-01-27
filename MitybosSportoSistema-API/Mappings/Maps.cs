@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MitybosSportoSistema_API.Data;
 using MitybosSportoSistema_API.DTOs;
+using MitybosSportoSistema_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace MitybosSportoSistema_API.Mappings
         public Maps()
         {
             CreateMap<Produktas, ProduktasDTO>().ReverseMap();
+            CreateMap<Receptas, ReceptasDTO>().ReverseMap();
+            CreateMap<Produktas, ProduktasDTO>().ReverseMap();
+            CreateMap<Ingridientas, IngridientasDTO>().ReverseMap();
         }
     }
 }

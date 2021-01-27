@@ -41,6 +41,12 @@
             Endpoint used to interact with the Receptas in the SportoIrMitybos database
             </summary>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.GetReceptai">
+            <summary>
+            Get all receptai
+            </summary>
+            <returns>List of authors</returns>
+        </member>
         <member name="M:MitybosSportoSistema_API.Controllers.UsersController.GetUserInfo">
             <summary>
             Get user info endpoint

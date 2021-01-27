@@ -1,14 +1,11 @@
-﻿using MitybosSportoSistema_API.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MitybosSportoSistema_API.Models
+namespace MitybosSportoSistema_API.DTOs
 {
-    [Table("Receptai")]
-    public class Receptas
+    public class ReceptasDTO
     {
         public int Id { get; set; }
         public string Pavadinimas { get; set; }
@@ -16,6 +13,6 @@ namespace MitybosSportoSistema_API.Models
         public string Aprasymas { get; set; }
         public int GaminimoLaikas { get; set; }
         public int PorcijuSkaicius { get; set; }
-        public List<Ingridientas> Ingridientai { get; set; }
+        public virtual IList<IngridientasDTO> Ingridientai { get; set; }
     }
 }
