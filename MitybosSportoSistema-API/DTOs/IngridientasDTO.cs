@@ -11,4 +11,10 @@ namespace MitybosSportoSistema_API.DTOs
         public int Kiekis { get; set; }
         public virtual ProduktasDTO Produktas { get; set; }
     }
+
+    public class IngridientasCreateDTO
+    {
+        public int Kiekis { get; set; }
+        public virtual ProduktasDTO Produktas { get; set; }
+    }
 }

@@ -7,7 +7,6 @@ namespace MitybosSportoSistema_API.DTOs
 {
     public class ProduktasDTO
     {
-        public int Id { get; set; }
         public string Pavadinimas { get; set; }
         public double Kcal { get; set; }
         public double Vanduo { get; set; }

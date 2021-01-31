@@ -47,6 +47,20 @@
             </summary>
             <returns>List of authors</returns>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.GetRecipe(System.Int32)">
+            <summary>
+            Gets a recipe by id
+            </summary>
+            <param name="id"></param>
+            <returns>A Book record</returns>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.Create(MitybosSportoSistema_API.DTOs.ReceptasCreateDTO)">
+            <summary>
+            Creates a new recipe
+            </summary>
+            <param name="recipeDTO"></param>
+            <returns>Book object</returns>
+        </member>
         <member name="M:MitybosSportoSistema_API.Controllers.UsersController.GetUserInfo">
             <summary>
             Get user info endpoint

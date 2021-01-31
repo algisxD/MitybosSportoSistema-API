@@ -41,10 +41,11 @@ namespace MitybosSportoSistema_API.Services
 
         public async Task<Receptas> FindById(int id)
         {
-            var author = await _db.Receptai
+            var receptas = await _db.Receptai
                 .Include(q => q.Ingridientai)
+                .ThenInclude(i => i.Produktas)
                 .FirstOrDefaultAsync(q => q.Id == id); ;
-            return author;
+            return receptas;
         }
 
         public async Task<bool> isExists(int id)

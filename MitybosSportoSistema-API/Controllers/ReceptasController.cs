@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MitybosSportoSistema_API.Contracts;
 using MitybosSportoSistema_API.DTOs;
+using MitybosSportoSistema_API.Models;
 
 namespace MitybosSportoSistema_API.Controllers
 {
@@ -52,6 +53,78 @@ namespace MitybosSportoSistema_API.Controllers
             {
                 return InternalError($"{e.Message} - {e.InnerException}");
 
+            }
+        }
+
+        /// <summary>
+        /// Gets a recipe by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A Book record</returns>
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetRecipe(int id)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Attempted Call id: {id}");
+                var recipe = await _receptasRepository.FindById(id);
+                if (recipe == null)
+                {
+                    _logger.LogWarn($"{location}: Failed to retrieve record id: {id}");
+                    return NotFound();
+                }
+                var response = _mapper.Map<ReceptasDTO>(recipe);
+                _logger.LogInfo($"{location}: Successfully got record id: {id}");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
+        /// <summary>
+        /// Creates a new recipe
+        /// </summary>
+        /// <param name="recipeDTO"></param>
+        /// <returns>Book object</returns>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Create([FromBody] ReceptasCreateDTO recipeDTO)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Create attempted");
+                if (recipeDTO == null)
+                {
+                    _logger.LogWarn($"{location}: Empty request was submitted");
+                    return BadRequest(ModelState);
+                }
+                if (!ModelState.IsValid)
+                {
+
+                    _logger.LogWarn($"{location}: Data was incomplete");
+                    return BadRequest(ModelState);
+                }
+                var recipe = _mapper.Map<Receptas>(recipeDTO);
+                var isSucces = await _receptasRepository.Create(recipe);
+                if (!isSucces)
+                {
+                    return InternalError($"{location}: creation failed");
+                }
+                _logger.LogInfo($"{location}: Creation was successful");
+                return Created("Create", new { recipe });
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
         }
 
