@@ -16,6 +16,6 @@ namespace MitybosSportoSistema_API.Models
         public string Aprasymas { get; set; }
         public int GaminimoLaikas { get; set; }
         public int PorcijuSkaicius { get; set; }
-        public List<Ingridientas> Ingridientai { get; set; }
+        public virtual IList<Ingridientas> Ingridientai { get; set; }
     }
 }

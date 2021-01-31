@@ -15,8 +15,7 @@ namespace MitybosSportoSistema_API.Controllers
     /// Endpoint used to interact with the Receptas in the SportoIrMitybos database
     /// </summary>
     [Route("api/[controller]")]
-    [ApiController]
-    [Authorize]
+    [ApiController]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     public class ReceptasController : ControllerBase
     {

@@ -38,10 +38,10 @@ namespace MitybosSportoSistema_API.Controllers
         {
             try
             {
-                _logger.LogInfo("Attempted Get All Authors");
+                _logger.LogInfo("Attempted Get All Recipes");
                 var produktai = await _produktaiRepository.FindAll();
                 var response = _mapper.Map<IList<ProduktasDTO>>(produktai);
-                _logger.LogInfo("Successfully got all Authors");
+                _logger.LogInfo("Successfully got all Recipes");
                 return Ok(response);
             }
             catch (Exception e)

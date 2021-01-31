@@ -9,6 +9,6 @@ namespace MitybosSportoSistema_API.DTOs
     {
         public int Id { get; set; }
         public int Kiekis { get; set; }
-        public virtual IList<ProduktasDTO> Produktai { get; set; }
+        public virtual ProduktasDTO Produktas { get; set; }
     }
 }
