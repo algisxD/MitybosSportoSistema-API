@@ -24,6 +24,7 @@ using System.Text;
 using AutoMapper;
 using MitybosSportoSistema_API.Mappings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using MitybosSportoSistema_API.Models;
 
 namespace MitybosSportoSistema_API
 {
@@ -42,7 +43,7 @@ namespace MitybosSportoSistema_API
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -87,13 +88,15 @@ namespace MitybosSportoSistema_API
             services.AddScoped<IReceptasRepository, ReceptasRepository>();
 
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(op =>
+                op.SerializerSettings.ReferenceLoopHandling =
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, 
             IWebHostEnvironment env,
-            UserManager<IdentityUser> userManager,
+            UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())

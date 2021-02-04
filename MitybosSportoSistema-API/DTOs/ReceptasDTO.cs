@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MitybosSportoSistema_API.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace MitybosSportoSistema_API.DTOs
         public string Aprasymas { get; set; }
         public int GaminimoLaikas { get; set; }
         public int PorcijuSkaicius { get; set; }
+        public virtual VartotojasRecipeGetDTO Vartotojas { get; set; }
         public virtual IList<IngridientasDTO> Ingridientai { get; set; }
     }
     public class ReceptasCreateDTO

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using MitybosSportoSistema_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +9,22 @@ namespace MitybosSportoSistema_API.Data
 {
     public static class SeedData
     {
-        public async static Task Seed(UserManager<IdentityUser> userManager,
+        public async static Task Seed(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             await SeedRoles(roleManager);
             await SeedUsers(userManager);
         }
 
-        private async static Task SeedUsers(UserManager<IdentityUser> userManager)
+        private async static Task SeedUsers(UserManager<ApplicationUser> userManager)
         {
             if(await userManager.FindByEmailAsync("algirdas.vasi@gmail.com") == null)
             {
-                var user = new IdentityUser
+                var user = new ApplicationUser
                 {
                     UserName = "algirdas.vasi@gmail.com",
-                    Email = "algirdas.vasi@gmail.com"
+                    Email = "algirdas.vasi@gmail.com",
+                    VartotojasId = 1
                 };
                 var result = await userManager.CreateAsync(user, "P$ssword1");
                 if (result.Succeeded)
@@ -33,10 +35,11 @@ namespace MitybosSportoSistema_API.Data
 
             if (await userManager.FindByEmailAsync("user@gmail.com") == null)
             {
-                var user = new IdentityUser
+                var user = new ApplicationUser
                 {
                     UserName = "user@gmail.com",
-                    Email = "user@gmail.com"
+                    Email = "user@gmail.com",
+                    VartotojasId = 2
                 };
                 var result = await userManager.CreateAsync(user, "P$ssword1");
                 if (result.Succeeded)
@@ -47,10 +50,11 @@ namespace MitybosSportoSistema_API.Data
 
             if (await userManager.FindByEmailAsync("specialist@gmail.com") == null)
             {
-                var user = new IdentityUser
+                var user = new ApplicationUser
                 {
                     UserName = "specialist@gmail.com",
-                    Email = "specialist@gmail.com"
+                    Email = "specialist@gmail.com",
+                    VartotojasId = 3
                 };
                 var result = await userManager.CreateAsync(user, "P$ssword1");
                 if (result.Succeeded)

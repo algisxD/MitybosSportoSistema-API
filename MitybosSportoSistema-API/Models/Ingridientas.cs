@@ -13,6 +13,7 @@ namespace MitybosSportoSistema_API.Models
     {
         public int Id { get; set; }
         public double Kiekis { get; set; }
+        public int? ProduktasId { get; set; }
         public virtual Produktas Produktas { get; set; }
     }
 }

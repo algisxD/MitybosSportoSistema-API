@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MitybosSportoSistema_API.Contracts;
 using MitybosSportoSistema_API.DTOs;
+using MitybosSportoSistema_API.Models;
 
 namespace MitybosSportoSistema_API.Controllers
 {
@@ -20,13 +21,13 @@ namespace MitybosSportoSistema_API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILoggerService _logger;
         private readonly IConfiguration _config;
 
-        public UsersController(SignInManager<IdentityUser> signInManager, 
-            UserManager<IdentityUser> userManager,
+        public UsersController(SignInManager<ApplicationUser> signInManager, 
+            UserManager<ApplicationUser> userManager,
             ILoggerService logger, IConfiguration config)
         {
             _signInManager = signInManager;
@@ -134,7 +135,7 @@ namespace MitybosSportoSistema_API.Controllers
                 var password = userDTO.Password;
                 var mainError = "";
                 _logger.LogInfo($"{location}: User registration attempted for {username}");
-                var user = new IdentityUser { Email = username, UserName = username };
+                var user = new ApplicationUser { Email = username, UserName = username };
                 var result = await _userManager.CreateAsync(user, password);
 
                 if (!result.Succeeded)
@@ -155,7 +156,7 @@ namespace MitybosSportoSistema_API.Controllers
             }
         }
 
-        private async Task<string> GenerateJSONWebToken(IdentityUser user)
+        private async Task<string> GenerateJSONWebToken(ApplicationUser user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

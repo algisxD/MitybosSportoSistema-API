@@ -33,6 +33,7 @@ namespace MitybosSportoSistema_API.Services
         public async Task<IList<Receptas>> FindAll()
         {
             var recipes = await _db.Receptai
+                .Include(o => o.Vartotojas)
                 .Include(q => q.Ingridientai)
                 .ThenInclude(i => i.Produktas)
                 .ToListAsync();
