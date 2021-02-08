@@ -21,6 +21,7 @@ namespace MitybosSportoSistema_API.Mappings
             CreateMap<Ingridientas, IngridientasCreateDTO>().ReverseMap();           
             CreateMap<Vartotojas, VartotojasRecipeGetDTO>().ReverseMap();           
             CreateMap<Vartotojas, VartotojasDTO>().ReverseMap();           
+            CreateMap<Vartotojas, NewVartotojasDTO>().ReverseMap();           
         }
     }
 }

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MitybosSportoSistema_API.Services
 {
-    public class ProduktasRepository : IProduktasRepository
+    public class ProduktasService : IProduktasRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public ProduktasRepository(ApplicationDbContext db)
+        public ProduktasService(ApplicationDbContext db)
         {
             _db = db;
         }

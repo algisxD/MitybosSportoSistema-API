@@ -15,5 +15,6 @@ namespace MitybosSportoSistema_API.DTOs
         [DataType(DataType.Password)]
         [StringLength(15, ErrorMessage = "Your Password is limited from {2} to {1} characters", MinimumLength = 8)]
         public string Password { get; set; }
+        public virtual NewVartotojasDTO User {get;set;}
     }
 }

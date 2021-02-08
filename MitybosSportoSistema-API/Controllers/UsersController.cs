@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -25,15 +26,17 @@ namespace MitybosSportoSistema_API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILoggerService _logger;
         private readonly IConfiguration _config;
+        private readonly IMapper _mapper;
 
         public UsersController(SignInManager<ApplicationUser> signInManager, 
             UserManager<ApplicationUser> userManager,
-            ILoggerService logger, IConfiguration config)
+            ILoggerService logger, IConfiguration config, IMapper mapper)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
             _config = config;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -92,6 +95,8 @@ namespace MitybosSportoSistema_API.Controllers
         /// <returns></returns>
         [Route("login")]
         [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] UserDTO userDTO)
         {
@@ -125,6 +130,10 @@ namespace MitybosSportoSistema_API.Controllers
         /// <param name="userDTO"></param>
         /// <returns></returns>
         [Route("register")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] UserDTO userDTO)
         {
@@ -135,7 +144,12 @@ namespace MitybosSportoSistema_API.Controllers
                 var password = userDTO.Password;
                 var mainError = "";
                 _logger.LogInfo($"{location}: User registration attempted for {username}");
-                var user = new ApplicationUser { Email = username, UserName = username };
+                if(userDTO.User == null)
+                {
+                    return StatusCode(400, "Some user data is missing");
+                }
+                var vartotojas = _mapper.Map<Vartotojas>(userDTO.User);
+                var user = new ApplicationUser { Email = username, UserName = username, Vartotojas = vartotojas };
                 var result = await _userManager.CreateAsync(user, password);
 
                 if (!result.Succeeded)

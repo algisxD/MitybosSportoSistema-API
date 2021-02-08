@@ -13,4 +13,11 @@ namespace MitybosSportoSistema_API.DTOs
     {
         public string Vardas { get; set; }
     }
+    public class NewVartotojasDTO
+    {
+        public string Vardas { get; set; }
+        public string Pavarde { get; set; }
+        public int Ugis { get; set; }
+        public int Svoris { get; set; }
+    }
 }

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace MitybosSportoSistema_API.Services
 {
-    public class ReceptasRepository : IReceptasRepository
+    public class ReceptasService : IReceptasRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public ReceptasRepository(ApplicationDbContext db)
+        public ReceptasService(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -43,6 +43,7 @@ namespace MitybosSportoSistema_API.Services
         public async Task<Receptas> FindById(int id)
         {
             var receptas = await _db.Receptai
+                .Include(o => o.Vartotojas)
                 .Include(q => q.Ingridientai)
                 .ThenInclude(i => i.Produktas)
                 .FirstOrDefaultAsync(q => q.Id == id); ;
