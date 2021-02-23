@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using MitybosSportoSistema_API.Contracts;
 using MitybosSportoSistema_API.DTOs;
 using MitybosSportoSistema_API.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace MitybosSportoSistema_API.Controllers
 {
@@ -45,7 +47,7 @@ namespace MitybosSportoSistema_API.Controllers
             {
                 _logger.LogInfo($"{location}: Attempted Get All Receptai");
                 var receptai = await _receptasRepository.FindAll();
-                var response = _mapper.Map<IList<ReceptasDTO>>(receptai);
+                var response = _mapper.Map<ICollection<ReceptasDTO>>(receptai);
                 _logger.LogInfo($"{location}:Successfully got all Receptai");
                 return Ok(response);
             }
@@ -126,6 +128,45 @@ namespace MitybosSportoSistema_API.Controllers
             {
                 return InternalError($"{location}: {e.Message} - {e.InnerException}");
             }
+        }
+
+        /// <summary>
+        /// Uploads dishes picture
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Route("upload")]
+        public async Task<IActionResult> PostFileUpload()
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                var file = HttpContext.Request.Form.Files["image"];
+                MemoryStream msFile = new MemoryStream();
+                await file.CopyToAsync(msFile);
+
+                var ext = Path.GetExtension(file.FileName);
+                var picId = Guid.NewGuid().ToString().Replace("-", "");
+                var picName = $"{picId}{ext}";
+
+                string projectPath = Directory.GetCurrentDirectory();
+                var path = $"{projectPath}\\sportomitybossistema-ui\\src\\assets\\uploads\\{picName}";
+
+                using (FileStream fs = new FileStream(path, FileMode.Create))
+                {
+                    msFile.WriteTo(fs);
+                }
+
+                return Ok(picName);
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+
         }
 
         private string GetControllerActionNames()

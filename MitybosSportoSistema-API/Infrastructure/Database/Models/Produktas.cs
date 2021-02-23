@@ -15,6 +15,6 @@ namespace MitybosSportoSistema_API.Data
         public double Angliavandeniai { get; set; }
         public double Riebalai { get; set; }
         public double Druska { get; set; }
-        public virtual IList<Ingridientas> Ingridientai { get; set; }
+        public virtual ICollection<Ingridientas> Ingridientai { get; set; }
     }
 }

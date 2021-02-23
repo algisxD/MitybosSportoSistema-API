@@ -61,6 +61,12 @@
             <param name="recipeDTO"></param>
             <returns>Book object</returns>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.PostFileUpload">
+            <summary>
+            Uploads dishes picture
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:MitybosSportoSistema_API.Controllers.UsersController.GetUserInfo">
             <summary>
             Get user info endpoint

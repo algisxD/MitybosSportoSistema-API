@@ -16,7 +16,7 @@ namespace MitybosSportoSistema_API.DTOs
         public int GaminimoLaikas { get; set; }
         public int PorcijuSkaicius { get; set; }
         public virtual VartotojasRecipeGetDTO Vartotojas { get; set; }
-        public virtual IList<IngridientasDTO> Ingridientai { get; set; }
+        public virtual ICollection<IngridientasDTO> Ingridientai { get; set; }
     }
     public class ReceptasCreateDTO
     {
@@ -31,6 +31,8 @@ namespace MitybosSportoSistema_API.DTOs
         [Required]
         public int PorcijuSkaicius { get; set; }
         [Required]
-        public virtual IList<IngridientasCreateDTO> Ingridientai { get; set; }
+        public int? VartotojasId { get; set; }
+        [Required]
+        public virtual ICollection<IngridientasCreateDTO> Ingridientai { get; set; }
     }
 }

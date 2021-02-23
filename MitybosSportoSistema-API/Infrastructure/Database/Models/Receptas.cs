@@ -18,6 +18,7 @@ namespace MitybosSportoSistema_API.Models
         public int PorcijuSkaicius { get; set; }
         public int Kcal { get; set; }
         public virtual Vartotojas Vartotojas { get; set; }
-        public virtual IList<Ingridientas> Ingridientai { get; set; }
+        public int? VartotojasId { get; set; }
+        public virtual ICollection<Ingridientas> Ingridientai { get; set; }
     }
 }

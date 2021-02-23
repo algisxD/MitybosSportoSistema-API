@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace MitybosSportoSistema_API.Services
 {
-    public class ProduktasService : IProduktasRepository
+    public class ProduktasRepository : IProduktasRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public ProduktasService(ApplicationDbContext db)
+        public ProduktasRepository(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        public async Task<IList<Produktas>> FindAll()
+        public async Task<ICollection<Produktas>> FindAll()
         {
             var produktai = await _db.Produktai.ToListAsync();
             return produktai;

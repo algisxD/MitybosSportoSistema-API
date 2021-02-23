@@ -7,7 +7,7 @@ namespace MitybosSportoSistema_API.Contracts
 {
     public interface IRepositoryBaseGetOnly<T> where T : class
     {
-        Task<IList<T>> FindAll();
+        Task<ICollection<T>> FindAll();
         Task<T> FindById(int id);
     }
 }

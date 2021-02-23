@@ -40,7 +40,7 @@ namespace MitybosSportoSistema_API.Controllers
             {
                 _logger.LogInfo("Attempted Get All Recipes");
                 var produktai = await _produktaiRepository.FindAll();
-                var response = _mapper.Map<IList<ProduktasDTO>>(produktai);
+                var response = _mapper.Map<ICollection<ProduktasDTO>>(produktai);
                 _logger.LogInfo("Successfully got all Recipes");
                 return Ok(response);
             }

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace MitybosSportoSistema_API.Services
 {
-    public class ReceptasService : IReceptasRepository
+    public class ReceptasRepository : IReceptasRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public ReceptasService(ApplicationDbContext db)
+        public ReceptasRepository(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -30,7 +30,7 @@ namespace MitybosSportoSistema_API.Services
             return await Save();
         }
 
-        public async Task<IList<Receptas>> FindAll()
+        public async Task<ICollection<Receptas>> FindAll()
         {
             var recipes = await _db.Receptai
                 .Include(o => o.Vartotojas)
