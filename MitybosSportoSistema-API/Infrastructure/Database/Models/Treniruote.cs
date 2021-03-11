@@ -1,4 +1,5 @@
 ﻿using MitybosSportoSistema_API.Data;
+using MitybosSportoSistema_API.Infrastructure.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,6 +13,10 @@ namespace MitybosSportoSistema_API.Models
     {
         public int Id { get; set; }
         public string Pavadinimas { get; set; }
+        public Days SavaitesDiena { get; set; }
+        public DateTime SukurimoData { get; set; }
+        public string TreniruotesTipas { get; set; }
+        public int? SportoProgramaId { get; set; }
         public List<Pratimas> DaromiPratimai { get; set; } 
     }
 }

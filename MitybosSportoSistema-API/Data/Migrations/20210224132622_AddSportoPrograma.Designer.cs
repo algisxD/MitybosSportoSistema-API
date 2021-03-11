@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MitybosSportoSistema_API.Data;
 
 namespace MitybosSportoSistema_API.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210224132622_SportoPrograma")]
+    partial class SportoPrograma
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,6 +189,26 @@ namespace MitybosSportoSistema_API.Data.Migrations
                     b.ToTable("Produktai");
                 });
 
+            modelBuilder.Entity("MitybosSportoSistema_API.Infrastructure.Database.Models.SportoPrograma", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Pavadinimas")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VartotojasId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VartotojasId");
+
+                    b.ToTable("SportoPrograma");
+                });
+
             modelBuilder.Entity("MitybosSportoSistema_API.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -346,32 +368,6 @@ namespace MitybosSportoSistema_API.Data.Migrations
                     b.ToTable("Receptai");
                 });
 
-            modelBuilder.Entity("MitybosSportoSistema_API.Models.SportoPrograma", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("ArAktyvi")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Pavadinimas")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("SukurimoData")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("VartotojasId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("VartotojasId");
-
-                    b.ToTable("SportoPrograma");
-                });
-
             modelBuilder.Entity("MitybosSportoSistema_API.Models.Treniruote", b =>
                 {
                     b.Property<int>("Id")
@@ -387,12 +383,6 @@ namespace MitybosSportoSistema_API.Data.Migrations
 
                     b.Property<int?>("SportoProgramaId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("SukurimoData")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TreniruotesTipas")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -476,6 +466,13 @@ namespace MitybosSportoSistema_API.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MitybosSportoSistema_API.Infrastructure.Database.Models.SportoPrograma", b =>
+                {
+                    b.HasOne("MitybosSportoSistema_API.Models.Vartotojas", "Vartotojas")
+                        .WithMany("SportoProgramos")
+                        .HasForeignKey("VartotojasId");
+                });
+
             modelBuilder.Entity("MitybosSportoSistema_API.Models.ApplicationUser", b =>
                 {
                     b.HasOne("MitybosSportoSistema_API.Models.Vartotojas", "Vartotojas")
@@ -508,16 +505,9 @@ namespace MitybosSportoSistema_API.Data.Migrations
                         .HasForeignKey("VartotojasId");
                 });
 
-            modelBuilder.Entity("MitybosSportoSistema_API.Models.SportoPrograma", b =>
-                {
-                    b.HasOne("MitybosSportoSistema_API.Models.Vartotojas", "Vartotojas")
-                        .WithMany("SportoProgramos")
-                        .HasForeignKey("VartotojasId");
-                });
-
             modelBuilder.Entity("MitybosSportoSistema_API.Models.Treniruote", b =>
                 {
-                    b.HasOne("MitybosSportoSistema_API.Models.SportoPrograma", null)
+                    b.HasOne("MitybosSportoSistema_API.Infrastructure.Database.Models.SportoPrograma", null)
                         .WithMany("Treniruotes")
                         .HasForeignKey("SportoProgramaId");
                 });

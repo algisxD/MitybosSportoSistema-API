@@ -16,5 +16,6 @@ namespace MitybosSportoSistema_API.Models
         public int Ugis { get; set; }
         public int Svoris { get; set; }
         public ICollection<Receptas> Receptai { get; set; }
+        public ICollection<SportoPrograma> SportoProgramos { get; set; }
     }
 }

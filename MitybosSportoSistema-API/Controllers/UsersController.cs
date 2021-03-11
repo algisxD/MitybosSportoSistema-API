@@ -72,7 +72,7 @@ namespace MitybosSportoSistema_API.Controllers
                         .GetRolesAsync(user);
 
                     _logger.LogInfo($"{location}: {user} Successfully got user info");
-                    return Ok(new { email = user.UserName, roles = role });
+                    return Ok(new { email = user.UserName, roles = role, UserId = user.VartotojasId });
                 }
                 else
                 {

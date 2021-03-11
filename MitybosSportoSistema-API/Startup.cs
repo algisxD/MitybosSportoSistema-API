@@ -25,6 +25,7 @@ using AutoMapper;
 using MitybosSportoSistema_API.Mappings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MitybosSportoSistema_API.Models;
+using MitybosSportoSistema_API.Infrastructure.Repositories;
 
 namespace MitybosSportoSistema_API
 {
@@ -86,6 +87,8 @@ namespace MitybosSportoSistema_API
             services.AddSingleton<ILoggerService, LoggerService>();
             services.AddScoped<IProduktasRepository, ProduktasRepository>();
             services.AddScoped<IReceptasRepository, ReceptasRepository>();
+            services.AddScoped<ISportoProgramaRepository, SportoProgramaRepository>();
+            services.AddScoped<ITreniruoteRepository, TreniruoteRepository>();
 
 
             services.AddControllers().AddNewtonsoftJson(op =>

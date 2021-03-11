@@ -15,6 +15,7 @@ namespace MitybosSportoSistema_API.Data
         public DbSet<Produktas> Produktai { get; set; }
         public DbSet<Ingridientas> Ingridientai { get; set; }
         public DbSet<Vartotojas> Vartotojai { get; set; }
+        public DbSet<SportoPrograma> SportoProgramos { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

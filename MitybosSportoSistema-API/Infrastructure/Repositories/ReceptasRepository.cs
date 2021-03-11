@@ -46,7 +46,7 @@ namespace MitybosSportoSistema_API.Services
                 .Include(o => o.Vartotojas)
                 .Include(q => q.Ingridientai)
                 .ThenInclude(i => i.Produktas)
-                .FirstOrDefaultAsync(q => q.Id == id); ;
+                .FirstOrDefaultAsync(q => q.Id == id);
             return receptas;
         }
 

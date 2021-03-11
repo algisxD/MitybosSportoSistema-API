@@ -25,6 +25,11 @@
         <member name="M:MitybosSportoSistema_API.Controllers.HomeController.Post(System.String)">
             
         </member>
+        <member name="T:MitybosSportoSistema_API.Controllers.PratimasController">
+            <summary>
+            Endpoint used to interact with the exercises
+            </summary>
+        </member>
         <member name="T:MitybosSportoSistema_API.Controllers.ProduktasController">
             <summary>
             Endpoint used to interact with the Authors in the book store's database
@@ -65,6 +70,38 @@
             <summary>
             Uploads dishes picture
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MitybosSportoSistema_API.Controllers.SportoProgramaController">
+            <summary>
+            Endpoint used to interact with the SportoPrograma in the SportoIrMitybos database
+            </summary>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.SportoProgramaController.Update(System.Int32,MitybosSportoSistema_API.DTOs.SportoProgramaUpdateActivityDTO)">
+            <summary>
+            Update sport program status (active/inactive)
+            </summary>
+            <param name="id"></param>
+            <param name="programaDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MitybosSportoSistema_API.Controllers.TreniruoteController">
+            <summary>
+            Interacts with the Treniruote tab;e
+            </summary>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.TreniruoteController.GetTreniruote(System.Int32)">
+            <summary>
+            Gets a Book by Id
+            </summary>
+            <param name="id"></param>
+            <returns>A Book record</returns>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.TreniruoteController.Delete(System.Int32)">
+            <summary>
+            Deletes a treniruote by id
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.UsersController.GetUserInfo">
