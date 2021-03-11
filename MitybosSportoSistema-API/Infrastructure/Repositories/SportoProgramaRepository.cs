@@ -34,9 +34,13 @@ namespace MitybosSportoSistema_API.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<SportoPrograma> FindById(int id)
+        public async Task<SportoPrograma> FindById(int id)
         {
-            throw new NotImplementedException();
+            var sportProgram = await _db.SportoProgramos
+                .Include(q => q.Treniruotes)
+                .ThenInclude(e => e.DaromiPratimai)
+                .FirstOrDefaultAsync(q => q.Id == id);
+            return sportProgram;
         }
 
         public async Task<ICollection<SportoPrograma>> GetByUserId(int userId)

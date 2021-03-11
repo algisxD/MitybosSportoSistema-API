@@ -48,9 +48,10 @@ namespace MitybosSportoSistema_API.Infrastructure.Repositories
             return isExists;
         }
 
-        public Task<bool> Save()
+        public async Task<bool> Save()
         {
-            throw new NotImplementedException();
+            var changes = await _db.SaveChangesAsync();
+            return changes > 0;
         }
 
         public async Task<bool> Update(Treniruote entity)

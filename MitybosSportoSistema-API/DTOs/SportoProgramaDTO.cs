@@ -14,4 +14,12 @@ namespace MitybosSportoSistema_API.DTOs
         public int? VartotojasId { get; set; }
         public List<TreniruoteDTO> Treniruotes { get; set; }
     }
+
+    public class CreateSportoProgramaDTO
+    {
+        public string Pavadinimas { get; set; }
+        public DateTime SukurimoData { get; set; }
+        public bool ArAktyvi { get; set; }
+        public int? VartotojasId { get; set; }
+    }
 }

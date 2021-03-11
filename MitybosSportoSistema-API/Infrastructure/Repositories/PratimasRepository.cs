@@ -34,9 +34,11 @@ namespace MitybosSportoSistema_API.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Pratimas> FindById(int id)
+        public async Task<Pratimas> FindById(int id)
         {
-            throw new NotImplementedException();
+            var exercise = await _db.Pratimai
+                .FirstOrDefaultAsync(q => q.Id == id); ;
+            return exercise;
         }
 
         public async Task<bool> isExists(int id)

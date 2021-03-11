@@ -89,6 +89,7 @@ namespace MitybosSportoSistema_API
             services.AddScoped<IReceptasRepository, ReceptasRepository>();
             services.AddScoped<ISportoProgramaRepository, SportoProgramaRepository>();
             services.AddScoped<ITreniruoteRepository, TreniruoteRepository>();
+            services.AddScoped<IPratimasRepository, PratimasRepository>();
 
 
             services.AddControllers().AddNewtonsoftJson(op =>

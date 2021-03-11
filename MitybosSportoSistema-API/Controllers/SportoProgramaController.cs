@@ -59,13 +59,13 @@ namespace MitybosSportoSistema_API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Update(int id, [FromBody] SportoProgramaUpdateActivityDTO programaDTO)
+        public async Task<IActionResult> Update(int id, [FromBody] SportoProgramaUpdateActivityDTO sportProgramDTO)
         {
             var location = GetControllerActionNames();
             try
             {
                 _logger.LogInfo($"{location}: Update attempted - id: {id}");
-                if (id < 1 || programaDTO == null || id != programaDTO.Id)
+                if (id < 1 || sportProgramDTO == null || id != sportProgramDTO.Id)
                 {
                     _logger.LogWarn($"{location}: Update failed with bada data - id: {id}");
                     return BadRequest();
@@ -81,13 +81,96 @@ namespace MitybosSportoSistema_API.Controllers
                     _logger.LogWarn($"{location}: Data was incomplete");
                     return BadRequest(ModelState);
                 }
-                var programa = _mapper.Map<SportoPrograma>(programaDTO);
-                var isSuccess = await _sportoProgramaRepository.Update(programa);
+                var sportProgram = _mapper.Map<SportoPrograma>(sportProgramDTO);
+                var isSuccess = await _sportoProgramaRepository.Update(sportProgram);
                 if (!isSuccess)
                 {
                     return InternalError($"{location}: Update operation failed with id: {id}");
                 }
                 _logger.LogWarn($"{location}: Record successfully updated id: {id}");
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
+        /// <summary>
+        /// Creates new sport program
+        /// </summary>
+        /// <param name="sportProgramDTO"></param>
+        /// <returns>Book object</returns>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Create([FromBody] CreateSportoProgramaDTO sportProgramDTO)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Create attempted");
+                if (sportProgramDTO == null)
+                {
+                    _logger.LogWarn($"{location}: Empty request was submitted");
+                    return BadRequest(ModelState);
+                }
+                if (!ModelState.IsValid)
+                {
+
+                    _logger.LogWarn($"{location}: Data was incomplete");
+                    return BadRequest(ModelState);
+                }
+                var book = _mapper.Map<SportoPrograma>(sportProgramDTO);
+                var isSucces = await _sportoProgramaRepository.Create(book);
+                if (!isSucces)
+                {
+                    return InternalError($"{location}: creation failed");
+                }
+                _logger.LogInfo($"{location}: Creation was successful");
+                return Created("Create", new { book });
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
+        /// <summary>
+        /// Deletes sport program by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Delete attempted - id: {id}");
+                if (id < 1)
+                {
+                    _logger.LogWarn($"{location}: Delete failed with bad data - id: {id}");
+                    return BadRequest();
+                }
+                var isExists = await _sportoProgramaRepository.isExists(id);
+                if (!isExists)
+                {
+                    _logger.LogWarn($"{location}: Failed to retrieve record - id:{id}");
+                    return NotFound();
+                }
+                var book = await _sportoProgramaRepository.FindById(id);
+                var isSuccess = await _sportoProgramaRepository.Delete(book);
+                if (!isSuccess)
+                {
+                    return InternalError($"{location}: Delete operation failed - id:{id}");
+                }
+                _logger.LogWarn($"{location}: Record successfully deleted id: {id}");
                 return NoContent();
             }
             catch (Exception e)

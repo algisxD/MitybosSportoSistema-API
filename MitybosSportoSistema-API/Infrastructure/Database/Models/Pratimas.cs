@@ -14,5 +14,6 @@ namespace MitybosSportoSistema_API.Models
         public string Aprasymas { get; set; }
         public int SerijuSkaicius { get; set; }
         public int PakartojimuSkaicius { get; set; }
+        public int? TreniruoteId { get; set; }
     }
 }

@@ -23,8 +23,13 @@ namespace MitybosSportoSistema_API.Mappings
             CreateMap<Vartotojas, VartotojasDTO>().ReverseMap();           
             CreateMap<Vartotojas, NewVartotojasDTO>().ReverseMap();           
             CreateMap<Pratimas, PratimasDTO>().ReverseMap();           
+            CreateMap<Pratimas, CreatePratimasDTO>().ReverseMap();           
+            CreateMap<Pratimas, UpdatePratimasDTO>().ReverseMap();           
             CreateMap<Treniruote, TreniruoteDTO>().ReverseMap();           
+            CreateMap<Treniruote, CreateTreniruoteDTO>().ReverseMap();           
+            CreateMap<Treniruote, UpdateTreniruoteDTO>().ReverseMap();           
             CreateMap<SportoPrograma, SportoProgramaDTO>().ReverseMap();           
+            CreateMap<SportoPrograma, CreateSportoProgramaDTO>().ReverseMap();           
             CreateMap<SportoPrograma, SportoProgramaUpdateActivityDTO>().ReverseMap();           
         }
     }
