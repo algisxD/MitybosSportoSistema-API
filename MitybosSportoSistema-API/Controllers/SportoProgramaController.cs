@@ -100,7 +100,7 @@ namespace MitybosSportoSistema_API.Controllers
         /// Creates new sport program
         /// </summary>
         /// <param name="sportProgramDTO"></param>
-        /// <returns>Book object</returns>
+        /// <returns>Sport program object</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -122,14 +122,45 @@ namespace MitybosSportoSistema_API.Controllers
                     _logger.LogWarn($"{location}: Data was incomplete");
                     return BadRequest(ModelState);
                 }
-                var book = _mapper.Map<SportoPrograma>(sportProgramDTO);
-                var isSucces = await _sportoProgramaRepository.Create(book);
+                var sportProgram = _mapper.Map<SportoPrograma>(sportProgramDTO);
+                var isSucces = await _sportoProgramaRepository.Create(sportProgram);
                 if (!isSucces)
                 {
                     return InternalError($"{location}: creation failed");
                 }
                 _logger.LogInfo($"{location}: Creation was successful");
-                return Created("Create", new { book });
+                return Created("Create", new { sportProgram });
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
+        /// <summary>
+        /// Gets sport program by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>A sport program record</returns>
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetSportProgram(int id)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Attempted Call id: {id}");
+                var sportProgram = await _sportoProgramaRepository.FindById(id);
+                if (sportProgram == null)
+                {
+                    _logger.LogWarn($"{location}: Failed to retrieve record id: {id}");
+                    return NotFound();
+                }
+                var response = _mapper.Map<SportoProgramaDTO>(sportProgram);
+                _logger.LogInfo($"{location}: Successfully got record id: {id}");
+                return Ok(response);
             }
             catch (Exception e)
             {
@@ -164,8 +195,8 @@ namespace MitybosSportoSistema_API.Controllers
                     _logger.LogWarn($"{location}: Failed to retrieve record - id:{id}");
                     return NotFound();
                 }
-                var book = await _sportoProgramaRepository.FindById(id);
-                var isSuccess = await _sportoProgramaRepository.Delete(book);
+                var sportProgram = await _sportoProgramaRepository.FindById(id);
+                var isSuccess = await _sportoProgramaRepository.Delete(sportProgram);
                 if (!isSuccess)
                 {
                     return InternalError($"{location}: Delete operation failed - id:{id}");

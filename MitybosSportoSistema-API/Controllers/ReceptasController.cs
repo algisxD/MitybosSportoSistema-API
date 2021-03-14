@@ -62,7 +62,7 @@ namespace MitybosSportoSistema_API.Controllers
         /// Gets a recipe by id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>A Book record</returns>
+        /// <returns>A recipe record</returns>
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -93,7 +93,7 @@ namespace MitybosSportoSistema_API.Controllers
         /// Creates a new recipe
         /// </summary>
         /// <param name="recipeDTO"></param>
-        /// <returns>Book object</returns>
+        /// <returns>Recipe object</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

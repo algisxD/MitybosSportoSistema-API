@@ -11,7 +11,7 @@ using MitybosSportoSistema_API.DTOs;
 namespace MitybosSportoSistema_API.Controllers
 {
     /// <summary>
-    /// Endpoint used to interact with the Authors in the book store's database
+    /// Endpoint used to interact with the products in the database
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]

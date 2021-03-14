@@ -36,7 +36,7 @@ namespace MitybosSportoSistema_API.Controllers
         /// Creates a new workout
         /// </summary>
         /// <param name="treniruoteDTO"></param>
-        /// <returns>Book object</returns>
+        /// <returns>Workout object</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -77,7 +77,7 @@ namespace MitybosSportoSistema_API.Controllers
         /// Gets a workout by Id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>A Book record</returns>
+        /// <returns>A workout record</returns>
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

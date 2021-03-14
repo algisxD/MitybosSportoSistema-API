@@ -11,7 +11,7 @@ namespace MitybosSportoSistema_API.DTOs
         public int Id { get; set; }
         public string Pavadinimas { get; set; }
         public DateTime SukurimoData { get; set; }
-        public int SavaitesDiena { get; set; }
+        public string SavaitesDiena { get; set; }
         public string TreniruotesTipas { get; set; }
         public int? SportoProgramaId { get; set; }
         public List<PratimasDTO> DaromiPratimai { get; set; }
@@ -24,7 +24,7 @@ namespace MitybosSportoSistema_API.DTOs
         [Required]
         public DateTime SukurimoData { get; set; }
         [Required]
-        public int SavaitesDiena { get; set; }
+        public string SavaitesDiena { get; set; }
         [Required]
         public string TreniruotesTipas { get; set; }
         public int? SportoProgramaId { get; set; }
@@ -39,7 +39,7 @@ namespace MitybosSportoSistema_API.DTOs
         [Required]
         public DateTime SukurimoData { get; set; }
         [Required]
-        public int SavaitesDiena { get; set; }
+        public string SavaitesDiena { get; set; }
         [Required]
         public string TreniruotesTipas { get; set; }
         public int? SportoProgramaId { get; set; }

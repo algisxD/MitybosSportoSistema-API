@@ -32,10 +32,41 @@ namespace MitybosSportoSistema_API.Controllers
         }
 
         /// <summary>
+        /// Gets an exercise by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>An exercise record</returns>
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetExercise(int id)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Attempted Call id: {id}");
+                var exercise = await _pratimasRepository.FindById(id);
+                if (exercise == null)
+                {
+                    _logger.LogWarn($"{location}: Failed to retrieve record id: {id}");
+                    return NotFound();
+                }
+                var response = _mapper.Map<PratimasDTO>(exercise);
+                _logger.LogInfo($"{location}: Successfully got record id: {id}");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
+        /// <summary>
         /// Creates a new exercise
         /// </summary>
         /// <param name="exerciseDTO"></param>
-        /// <returns>Book object</returns>
+        /// <returns>Exercise object</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -118,7 +149,7 @@ namespace MitybosSportoSistema_API.Controllers
         /// Updates an exercise
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="bookDTO"></param>
+        /// <param name="exerciseDTO"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -146,8 +177,8 @@ namespace MitybosSportoSistema_API.Controllers
                     _logger.LogWarn($"{location}: Data was incomplete");
                     return BadRequest(ModelState);
                 }
-                var book = _mapper.Map<Pratimas>(exerciseDTO);
-                var isSuccess = await _pratimasRepository.Update(book);
+                var exercise = _mapper.Map<Pratimas>(exerciseDTO);
+                var isSuccess = await _pratimasRepository.Update(exercise);
                 if (!isSuccess)
                 {
                     return InternalError($"{location}: Update operation failed with id: {id}");

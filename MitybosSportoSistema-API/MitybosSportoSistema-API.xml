@@ -30,12 +30,19 @@
             Endpoint used to interact with the exercises
             </summary>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.PratimasController.GetExercise(System.Int32)">
+            <summary>
+            Gets an exercise by id
+            </summary>
+            <param name="id"></param>
+            <returns>An exercise record</returns>
+        </member>
         <member name="M:MitybosSportoSistema_API.Controllers.PratimasController.Create(MitybosSportoSistema_API.DTOs.CreatePratimasDTO)">
             <summary>
             Creates a new exercise
             </summary>
             <param name="exerciseDTO"></param>
-            <returns>Book object</returns>
+            <returns>Exercise object</returns>
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.PratimasController.Delete(System.Int32)">
             <summary>
@@ -49,12 +56,12 @@
             Updates an exercise
             </summary>
             <param name="id"></param>
-            <param name="bookDTO"></param>
+            <param name="exerciseDTO"></param>
             <returns></returns>
         </member>
         <member name="T:MitybosSportoSistema_API.Controllers.ProduktasController">
             <summary>
-            Endpoint used to interact with the Authors in the book store's database
+            Endpoint used to interact with the products in the database
             </summary>
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.ProduktasController.GetProduktai">
@@ -79,14 +86,14 @@
             Gets a recipe by id
             </summary>
             <param name="id"></param>
-            <returns>A Book record</returns>
+            <returns>A recipe record</returns>
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.Create(MitybosSportoSistema_API.DTOs.ReceptasCreateDTO)">
             <summary>
             Creates a new recipe
             </summary>
             <param name="recipeDTO"></param>
-            <returns>Book object</returns>
+            <returns>Recipe object</returns>
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.PostFileUpload">
             <summary>
@@ -112,7 +119,14 @@
             Creates new sport program
             </summary>
             <param name="sportProgramDTO"></param>
-            <returns>Book object</returns>
+            <returns>Sport program object</returns>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.SportoProgramaController.GetSportProgram(System.Int32)">
+            <summary>
+            Gets sport program by id
+            </summary>
+            <param name="id"></param>
+            <returns>A sport program record</returns>
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.SportoProgramaController.Delete(System.Int32)">
             <summary>
@@ -131,14 +145,14 @@
             Creates a new workout
             </summary>
             <param name="treniruoteDTO"></param>
-            <returns>Book object</returns>
+            <returns>Workout object</returns>
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.TreniruoteController.GetTreniruote(System.Int32)">
             <summary>
             Gets a workout by Id
             </summary>
             <param name="id"></param>
-            <returns>A Book record</returns>
+            <returns>A workout record</returns>
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.TreniruoteController.Delete(System.Int32)">
             <summary>
