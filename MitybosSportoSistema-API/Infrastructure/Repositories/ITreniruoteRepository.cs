@@ -10,5 +10,6 @@ namespace MitybosSportoSistema_API.Infrastructure.Repositories
 {
     public interface ITreniruoteRepository : IRepositoryBase<Treniruote>
     {
+        public Task<ICollection<Treniruote>> FindByIdAndTodaysDate(int id, int dayOfTheWeek);
     }
 }

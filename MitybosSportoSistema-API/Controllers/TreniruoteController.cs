@@ -31,6 +31,29 @@ namespace MitybosSportoSistema_API.Controllers
 
         }
 
+        /// <summary>
+        /// Gets work out by user id and todays date
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("user/{userId}/{day}")]
+        public async Task<IActionResult> Get(int userId, int day)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Attempted Get All work outs by userId and todays date");
+                var workOuts = await _treniruoteRepository.FindByIdAndTodaysDate(userId, day);
+                var response = _mapper.Map<ICollection<TreniruoteDTO>>(workOuts);
+                _logger.LogInfo($"{location}:Successfully got all Treniruotes");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{e.Message} - {e.InnerException}");
+
+            }
+        }
 
         /// <summary>
         /// Creates a new workout

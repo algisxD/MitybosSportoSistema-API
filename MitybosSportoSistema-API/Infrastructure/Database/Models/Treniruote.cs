@@ -16,7 +16,9 @@ namespace MitybosSportoSistema_API.Models
         public DateTime SukurimoData { get; set; }
         public string TreniruotesTipas { get; set; }
         public string SavaitesDiena { get; set; }
+        public int SavaitesDienosSkaitineReiksme { get; set; }
         public int? SportoProgramaId { get; set; }
+        public int? VartotojasId { get; set; }
         public List<Pratimas> DaromiPratimai { get; set; } 
     }
 }

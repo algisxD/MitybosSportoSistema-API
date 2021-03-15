@@ -30,6 +30,11 @@ namespace MitybosSportoSistema_API.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Gets sport program by user id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> Get(int userId)
         {

@@ -106,6 +106,13 @@
             Endpoint used to interact with the SportoPrograma in the SportoIrMitybos database
             </summary>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.SportoProgramaController.Get(System.Int32)">
+            <summary>
+            Gets sport program by user id
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
         <member name="M:MitybosSportoSistema_API.Controllers.SportoProgramaController.Update(System.Int32,MitybosSportoSistema_API.DTOs.SportoProgramaUpdateActivityDTO)">
             <summary>
             Update sport program status (active/inactive)
@@ -139,6 +146,13 @@
             <summary>
             Interacts with the Treniruote tab;e
             </summary>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.TreniruoteController.Get(System.Int32,System.Int32)">
+            <summary>
+            Gets work out by user id and todays date
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.TreniruoteController.Create(MitybosSportoSistema_API.DTOs.CreateTreniruoteDTO)">
             <summary>

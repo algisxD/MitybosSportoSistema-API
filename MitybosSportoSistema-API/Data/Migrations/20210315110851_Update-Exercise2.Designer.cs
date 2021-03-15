@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MitybosSportoSistema_API.Data;
 
 namespace MitybosSportoSistema_API.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210315110851_Update-Exercise2")]
+    partial class UpdateExercise2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -397,14 +399,9 @@ namespace MitybosSportoSistema_API.Data.Migrations
                     b.Property<string>("TreniruotesTipas")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VartotojasId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("SportoProgramaId");
-
-                    b.HasIndex("VartotojasId");
 
                     b.ToTable("Treniruotes");
                 });
@@ -528,10 +525,6 @@ namespace MitybosSportoSistema_API.Data.Migrations
                     b.HasOne("MitybosSportoSistema_API.Models.SportoPrograma", null)
                         .WithMany("Treniruotes")
                         .HasForeignKey("SportoProgramaId");
-
-                    b.HasOne("MitybosSportoSistema_API.Models.Vartotojas", null)
-                        .WithMany("Treniruotes")
-                        .HasForeignKey("VartotojasId");
                 });
 #pragma warning restore 612, 618
         }
