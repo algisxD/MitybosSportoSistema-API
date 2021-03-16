@@ -149,7 +149,7 @@
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.TreniruoteController.Get(System.Int32,System.Int32)">
             <summary>
-            Gets work out by user id and todays date
+            Gets active workouts by user id and todays date
             </summary>
             <param name="userId"></param>
             <returns></returns>

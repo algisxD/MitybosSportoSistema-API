@@ -31,6 +31,8 @@
     <Compile Remove="Data\Migrations\20210204155247_ReceptasHasVartotojas.Designer.cs" />
     <Compile Remove="Data\Migrations\20210309083838_Update-SportoPrograma.cs" />
     <Compile Remove="Data\Migrations\20210309083838_Update-SportoPrograma.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210316101203_aa.cs" />
+    <Compile Remove="Data\Migrations\20210316101203_aa.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

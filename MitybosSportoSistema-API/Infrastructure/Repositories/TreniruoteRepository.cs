@@ -45,8 +45,10 @@ namespace MitybosSportoSistema_API.Infrastructure.Repositories
         public async Task<ICollection<Treniruote>> FindByIdAndTodaysDate(int id, int dayOfTheWeek)
         {
             var workOut = await _db.Treniruotes
-                .Where(u => u.VartotojasId == id && u.SavaitesDienosSkaitineReiksme == dayOfTheWeek)
+                
                 .Include(q => q.DaromiPratimai)
+                .Include(s => s.SportoPrograma)
+                .Where(u => u.VartotojasId == id && u.SavaitesDienosSkaitineReiksme == dayOfTheWeek && u.SportoPrograma.ArAktyvi == true)
                 .ToListAsync();
             return workOut;
         }

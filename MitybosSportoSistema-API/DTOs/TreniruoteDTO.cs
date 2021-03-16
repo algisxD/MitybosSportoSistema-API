@@ -15,7 +15,7 @@ namespace MitybosSportoSistema_API.DTOs
         public string SavaitesDienosSkaitineReiksme { get; set; }
         public string TreniruotesTipas { get; set; }
         public int? SportoProgramaId { get; set; }
-        public List<PratimasDTO> DaromiPratimai { get; set; }
+        public ICollection<PratimasDTO> DaromiPratimai { get; set; }
     }
 
     public class CreateTreniruoteDTO

@@ -32,7 +32,7 @@ namespace MitybosSportoSistema_API.Controllers
         }
 
         /// <summary>
-        /// Gets work out by user id and todays date
+        /// Gets active workouts by user id and todays date
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

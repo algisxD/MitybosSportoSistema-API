@@ -19,6 +19,7 @@ namespace MitybosSportoSistema_API.Models
         public int SavaitesDienosSkaitineReiksme { get; set; }
         public int? SportoProgramaId { get; set; }
         public int? VartotojasId { get; set; }
-        public List<Pratimas> DaromiPratimai { get; set; } 
+        public ICollection<Pratimas> DaromiPratimai { get; set; } 
+        public virtual SportoPrograma SportoPrograma { get; set; } 
     }
 }
