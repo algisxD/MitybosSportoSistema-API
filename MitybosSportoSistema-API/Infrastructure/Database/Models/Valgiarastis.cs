@@ -5,17 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MitybosSportoSistema_API.Models
+namespace MitybosSportoSistema_API.Infrastructure.Database.Models
 {
-    [Table("SportoPrograma")]
-    public class SportoPrograma
+    [Table("Valgiarasciai")]
+    public class Valgiarastis
     {
         public int Id { get; set; }
         public string Pavadinimas { get; set; }
         public DateTime SukurimoData { get; set; }
-        public bool ArAktyvi { get; set; }
-        public virtual Vartotojas Vartotojas { get; set; }
+        public string SavaitesDiena { get; set; }
+        public int SavaitesDienosSkaitineReiksme { get; set; }
+        public bool ArAktyvus { get; set; }
         public int? VartotojasId { get; set; }
-        public ICollection<Treniruote> Treniruotes { get; set; }
+        public ICollection<Receptas> Receptai { get; set; }
     }
 }

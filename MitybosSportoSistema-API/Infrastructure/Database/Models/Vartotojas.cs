@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using MitybosSportoSistema_API.Infrastructure.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,5 +19,6 @@ namespace MitybosSportoSistema_API.Models
         public ICollection<Receptas> Receptai { get; set; }
         public ICollection<Treniruote> Treniruotes { get; set; }
         public ICollection<SportoPrograma> SportoProgramos { get; set; }
+        public ICollection<Valgiarastis> Valgiarasciai { get; set; }
     }
 }

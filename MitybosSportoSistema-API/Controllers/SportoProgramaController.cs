@@ -44,7 +44,7 @@ namespace MitybosSportoSistema_API.Controllers
                 _logger.LogInfo($"{location}: Attempted Get All SportoProgramos by userId");
                 var sportoProgramos = await _sportoProgramaRepository.GetByUserId(userId);
                 var response = _mapper.Map<ICollection<SportoProgramaDTO>>(sportoProgramos);
-                _logger.LogInfo($"{location}:Successfully got all Receptai");
+                _logger.LogInfo($"{location}:Successfully got all SportoProgramos");
                 return Ok(response);
             }
             catch (Exception e)

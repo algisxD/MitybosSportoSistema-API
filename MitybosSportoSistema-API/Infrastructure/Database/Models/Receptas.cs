@@ -17,8 +17,10 @@ namespace MitybosSportoSistema_API.Models
         public int GaminimoLaikas { get; set; }
         public int PorcijuSkaicius { get; set; }
         public int Kcal { get; set; }
-        public virtual Vartotojas Vartotojas { get; set; }
+        public virtual Vartotojas ReceptoAutorius { get; set; }
+        public bool ArViesas { get; set; }
         public int? VartotojasId { get; set; }
+        public int? ValgiarastisId { get; set; }
         public virtual ICollection<Ingridientas> Ingridientai { get; set; }
     }
 }

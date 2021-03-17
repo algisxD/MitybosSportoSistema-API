@@ -15,7 +15,7 @@ using System.IO;
 namespace MitybosSportoSistema_API.Controllers
 {
     /// <summary>
-    /// Endpoint used to interact with the Receptas in the SportoIrMitybos database
+    /// Endpoint used to interact with the table Receptai in the SportoIrMitybos database
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]    

@@ -33,7 +33,7 @@ namespace MitybosSportoSistema_API.Services
         public async Task<ICollection<Receptas>> FindAll()
         {
             var recipes = await _db.Receptai
-                .Include(o => o.Vartotojas)
+                .Include(o => o.ReceptoAutorius)
                 .Include(q => q.Ingridientai)
                 .ThenInclude(i => i.Produktas)
                 .ToListAsync();
@@ -43,7 +43,7 @@ namespace MitybosSportoSistema_API.Services
         public async Task<Receptas> FindById(int id)
         {
             var receptas = await _db.Receptai
-                .Include(o => o.Vartotojas)
+                .Include(o => o.ReceptoAutorius)
                 .Include(q => q.Ingridientai)
                 .ThenInclude(i => i.Produktas)
                 .FirstOrDefaultAsync(q => q.Id == id);

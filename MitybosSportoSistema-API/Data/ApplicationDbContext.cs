@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MitybosSportoSistema_API.Infrastructure.Database.Models;
 using MitybosSportoSistema_API.Models;
 
 namespace MitybosSportoSistema_API.Data
@@ -16,6 +17,7 @@ namespace MitybosSportoSistema_API.Data
         public DbSet<Ingridientas> Ingridientai { get; set; }
         public DbSet<Vartotojas> Vartotojai { get; set; }
         public DbSet<SportoPrograma> SportoProgramos { get; set; }
+        public DbSet<Valgiarastis> Valgiarasciai { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

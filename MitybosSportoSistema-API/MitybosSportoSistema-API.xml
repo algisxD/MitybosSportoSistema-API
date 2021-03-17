@@ -72,7 +72,7 @@
         </member>
         <member name="T:MitybosSportoSistema_API.Controllers.ReceptasController">
             <summary>
-            Endpoint used to interact with the Receptas in the SportoIrMitybos database
+            Endpoint used to interact with the table Receptai in the SportoIrMitybos database
             </summary>
         </member>
         <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.GetReceptai">
@@ -201,6 +201,18 @@
             User Registration Endpoint
             </summary>
             <param name="userDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MitybosSportoSistema_API.Controllers.ValgiarastisController">
+            <summary>
+            Endpoint used to interact with the Valgiarasciai table in the SportoIrMitybos database
+            </summary>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ValgiarastisController.Get(System.Int32)">
+            <summary>
+            Gets users menu by user id
+            </summary>
+            <param name="userId"></param>
             <returns></returns>
         </member>
     </members>

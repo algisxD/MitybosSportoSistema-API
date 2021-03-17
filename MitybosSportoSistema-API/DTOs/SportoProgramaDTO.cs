@@ -12,7 +12,7 @@ namespace MitybosSportoSistema_API.DTOs
         public DateTime SukurimoData { get; set; }
         public bool ArAktyvi { get; set; }
         public int? VartotojasId { get; set; }
-        public List<TreniruoteDTO> Treniruotes { get; set; }
+        public ICollection<TreniruoteDTO> Treniruotes { get; set; }
     }
 
     public class CreateSportoProgramaDTO

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MitybosSportoSistema_API.Data;
 using MitybosSportoSistema_API.DTOs;
+using MitybosSportoSistema_API.Infrastructure.Database.Models;
 using MitybosSportoSistema_API.Models;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace MitybosSportoSistema_API.Mappings
             CreateMap<SportoPrograma, SportoProgramaDTO>().ReverseMap();           
             CreateMap<SportoPrograma, CreateSportoProgramaDTO>().ReverseMap();           
             CreateMap<SportoPrograma, SportoProgramaUpdateActivityDTO>().ReverseMap();           
+            CreateMap<Valgiarastis, ValgiarastisDTO>().ReverseMap();           
         }
     }
 }
