@@ -37,16 +37,17 @@ namespace MitybosSportoSistema_API.Infrastructure.Repositories
         public async Task<Valgiarastis> FindById(int id)
         {
             var menu = await _db.Valgiarasciai
-                .Include(o => o.Receptai)
+                .Include(o => o.ValgiarastisReceptas)
+                .ThenInclude(q => q.Receptas)
                 .FirstOrDefaultAsync(q => q.Id == id);
-            return menu;
-        }
+            return menu;        }
 
         public async Task<ICollection<Valgiarastis>> GetByUserId(int userId)
         {
-            var valgiarasciai = _db.Valgiarasciai.Where(i => i.VartotojasId == userId)
-                .Include(o => o.Receptai);
-            return await valgiarasciai.ToListAsync();
+            var menu = _db.Valgiarasciai.Where(i => i.VartotojasId == userId)
+                .Include(o => o.ValgiarastisReceptas)
+                .ThenInclude(q => q.Receptas);
+            return await menu.ToListAsync();
         }
 
         public async Task<bool> isExists(int id)

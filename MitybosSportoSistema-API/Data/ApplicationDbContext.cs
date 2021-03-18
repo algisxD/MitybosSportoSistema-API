@@ -18,6 +18,7 @@ namespace MitybosSportoSistema_API.Data
         public DbSet<Vartotojas> Vartotojai { get; set; }
         public DbSet<SportoPrograma> SportoProgramos { get; set; }
         public DbSet<Valgiarastis> Valgiarasciai { get; set; }
+        public DbSet<ValgiarastisReceptas> ValgiarasciaiReceptai { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -25,6 +26,8 @@ namespace MitybosSportoSistema_API.Data
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<ValgiarastisReceptas>()
+                .HasKey(q => new { q.ReceptasId, q.ValgiarastisId });
             base.OnModelCreating(builder);
         }
     }

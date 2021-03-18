@@ -8,5 +8,6 @@ namespace MitybosSportoSistema_API.Contracts
 {
     public interface IReceptasRepository : IRepositoryBase<Receptas>
     {
+        Task<ICollection<Receptas>> FindAllPublicRecipes();
     }
 }

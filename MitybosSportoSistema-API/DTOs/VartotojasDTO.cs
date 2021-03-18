@@ -11,6 +11,7 @@ namespace MitybosSportoSistema_API.DTOs
 
     public class VartotojasRecipeGetDTO
     {
+        public int Id { get; set; }
         public string Vardas { get; set; }
     }
     public class NewVartotojasDTO

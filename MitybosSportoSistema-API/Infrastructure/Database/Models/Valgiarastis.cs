@@ -17,6 +17,6 @@ namespace MitybosSportoSistema_API.Infrastructure.Database.Models
         public int SavaitesDienosSkaitineReiksme { get; set; }
         public bool ArAktyvus { get; set; }
         public int? VartotojasId { get; set; }
-        public ICollection<Receptas> Receptai { get; set; }
+        public ICollection<ValgiarastisReceptas> ValgiarastisReceptas { get; set; }
     }
 }

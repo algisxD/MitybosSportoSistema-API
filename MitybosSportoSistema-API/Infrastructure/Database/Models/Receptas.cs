@@ -1,4 +1,5 @@
 ﻿using MitybosSportoSistema_API.Data;
+using MitybosSportoSistema_API.Infrastructure.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,7 +21,7 @@ namespace MitybosSportoSistema_API.Models
         public virtual Vartotojas ReceptoAutorius { get; set; }
         public bool ArViesas { get; set; }
         public int? VartotojasId { get; set; }
-        public int? ValgiarastisId { get; set; }
         public virtual ICollection<Ingridientas> Ingridientai { get; set; }
+        public ICollection<ValgiarastisReceptas> ValgiarastisReceptas { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace MitybosSportoSistema_API.DTOs
         public int GaminimoLaikas { get; set; }
         public int PorcijuSkaicius { get; set; }
         public int Kcal { get; set; }
-        public virtual VartotojasRecipeGetDTO Vartotojas { get; set; }
+        public virtual VartotojasRecipeGetDTO ReceptoAutorius { get; set; }
         public virtual ICollection<IngridientasDTO> Ingridientai { get; set; }
     }
     public class ReceptasCreateDTO

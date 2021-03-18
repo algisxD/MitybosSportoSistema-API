@@ -40,6 +40,17 @@ namespace MitybosSportoSistema_API.Services
             return recipes;
         }
 
+        public async Task<ICollection<Receptas>> FindAllPublicRecipes()
+        {
+            var recipes = await _db.Receptai
+                .Include(o => o.ReceptoAutorius)
+                .Include(q => q.Ingridientai)
+                .ThenInclude(i => i.Produktas)
+                .Where(a => a.ArViesas)
+                .ToListAsync();
+            return recipes;
+        }
+
         public async Task<Receptas> FindById(int id)
         {
             var receptas = await _db.Receptai

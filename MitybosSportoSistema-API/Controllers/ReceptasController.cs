@@ -34,9 +34,9 @@ namespace MitybosSportoSistema_API.Controllers
         }
 
         /// <summary>
-        /// Get all receptai
+        /// Get all recipes
         /// </summary>
-        /// <returns>List of authors</returns>
+        /// <returns>List of recipes</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -55,6 +55,30 @@ namespace MitybosSportoSistema_API.Controllers
             {
                 return InternalError($"{e.Message} - {e.InnerException}");
 
+            }
+        }
+
+        /// <summary>
+        /// Get all public receptai
+        /// </summary>
+        /// <returns>List of authors</returns>
+        [HttpGet("public")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetPublicReceptai()
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Attempted Get All public Receptai");
+                var receptai = await _receptasRepository.FindAllPublicRecipes();
+                var response = _mapper.Map<ICollection<ReceptasDTO>>(receptai);
+                _logger.LogInfo($"{location}:Successfully got all public Receptai");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{e.Message} - {e.InnerException}");
             }
         }
 
