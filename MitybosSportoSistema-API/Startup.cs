@@ -16,9 +16,6 @@ using System.Reflection;
 using System.IO;
 using MitybosSportoSistema_API.Contracts;
 using MitybosSportoSistema_API.Services;
-//using AutoMapper;
-//using MitybosSportoSistema_API.Mappings;
-//using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
@@ -91,6 +88,7 @@ namespace MitybosSportoSistema_API
             services.AddScoped<ITreniruoteRepository, TreniruoteRepository>();
             services.AddScoped<IPratimasRepository, PratimasRepository>();
             services.AddScoped<IValgiarastisRepository, ValgiarastisRepository>();
+            services.AddScoped<IValgiarastisReceptasRepository, ValgiarastisReceptasRepository>();
 
 
             services.AddControllers().AddNewtonsoftJson(op =>

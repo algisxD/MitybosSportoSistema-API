@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace MitybosSportoSistema_API.Infrastructure.Repositories
 {
-    public interface IValgiarastisRepository : IRepositoryBase<Valgiarastis>
+    public interface IValgiarastisReceptasRepository : IRepositoryBase<ValgiarastisReceptas>
     {
-        Task<ICollection<Valgiarastis>> GetByUserId(int userId);
-        Task<ICollection<Valgiarastis>> FindByIdAndTodaysDate(int id, int dayOfTheWeek);
     }
 }

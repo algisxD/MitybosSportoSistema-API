@@ -36,6 +36,7 @@ namespace MitybosSportoSistema_API.Mappings
             CreateMap<Valgiarastis, UpdateValgiarastisDTO>().ReverseMap();           
             CreateMap<Valgiarastis, CreateValgiarastisDTO>().ReverseMap();           
             CreateMap<ValgiarastisReceptas, ValgiarastisReceptasDTO>().ReverseMap();           
+            CreateMap<ValgiarastisReceptas, CreateValgiarastisReceptasDTO>().ReverseMap();           
         }
     }
 }

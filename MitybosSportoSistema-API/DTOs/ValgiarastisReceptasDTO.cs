@@ -13,4 +13,11 @@ namespace MitybosSportoSistema_API.DTOs
         public int ValgiarastisId { get; set; }
         public ValgiarastisDTO Valgiarastis { get; set; }
     }
+
+    public class CreateValgiarastisReceptasDTO
+    {
+        public int ReceptasId { get; set; }
+
+        public int ValgiarastisId { get; set; }
+    }
 }

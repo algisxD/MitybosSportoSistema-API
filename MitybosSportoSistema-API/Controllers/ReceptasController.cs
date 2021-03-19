@@ -193,6 +193,48 @@ namespace MitybosSportoSistema_API.Controllers
 
         }
 
+        /// <summary>
+        /// Deletes recipe by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Delete attempted - id: {id}");
+                if (id < 1)
+                {
+                    _logger.LogWarn($"{location}: Delete failed with bad data - id: {id}");
+                    return BadRequest();
+                }
+                var isExists = await _receptasRepository.isExists(id);
+                if (!isExists)
+                {
+                    _logger.LogWarn($"{location}: Failed to retrieve record - id:{id}");
+                    return NotFound();
+                }
+                var recipe = await _receptasRepository.FindById(id);
+                var isSuccess = await _receptasRepository.Delete(recipe);
+                if (!isSuccess)
+                {
+                    return InternalError($"{location}: Delete operation failed - id:{id}");
+                }
+                _logger.LogWarn($"{location}: Record successfully deleted id: {id}");
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
         private string GetControllerActionNames()
         {
             var controller = ControllerContext.ActionDescriptor.ControllerName;

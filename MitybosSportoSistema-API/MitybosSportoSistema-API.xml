@@ -107,6 +107,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.Delete(System.Int32)">
+            <summary>
+            Deletes recipe by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:MitybosSportoSistema_API.Controllers.SportoProgramaController">
             <summary>
             Endpoint used to interact with the SportoPrograma in the SportoIrMitybos database
@@ -243,12 +250,26 @@
             <param name="foodMenuDTO"></param>
             <returns>Sport program object</returns>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ValgiarastisController.Get(System.Int32,System.Int32)">
+            <summary>
+            Gets active food menus by user id and todays date
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
         <member name="M:MitybosSportoSistema_API.Controllers.ValgiarastisController.Delete(System.Int32)">
             <summary>
             Deletes food menu by id
             </summary>
             <param name="id"></param>
             <returns></returns>
+        </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ValgiarastisReceptasController.Create(MitybosSportoSistema_API.DTOs.CreateValgiarastisReceptasDTO)">
+            <summary>
+            Creates new food menu
+            </summary>
+            <param name="foodMenuRecipeDTO"></param>
+            <returns>Sport program object</returns>
         </member>
     </members>
 </doc>

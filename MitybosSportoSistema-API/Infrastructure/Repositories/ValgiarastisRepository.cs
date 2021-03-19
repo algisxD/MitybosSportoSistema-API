@@ -23,6 +23,17 @@ namespace MitybosSportoSistema_API.Infrastructure.Repositories
             return await Save();
         }
 
+        public async Task<ICollection<Valgiarastis>> FindByIdAndTodaysDate(int id, int dayOfTheWeek)
+        {
+            var foodMenu = await _db.Valgiarasciai
+                .Include(q => q.ValgiarastisReceptas)
+                .ThenInclude(r => r.Receptas)
+                .ThenInclude(i => i.Ingridientai)
+                .Where(u => u.VartotojasId == id && u.SavaitesDienosSkaitineReiksme == dayOfTheWeek && u.ArAktyvus == true)
+                .ToListAsync();
+            return foodMenu;
+        }
+
         public async Task<bool> Delete(Valgiarastis entity)
         {
             _db.Valgiarasciai.Remove(entity);
