@@ -28,6 +28,14 @@ namespace MitybosSportoSistema_API.Data
         {
             builder.Entity<ValgiarastisReceptas>()
                 .HasKey(q => new { q.ReceptasId, q.ValgiarastisId });
+            builder.Entity<ValgiarastisReceptas>()
+                .HasOne(m => m.Valgiarastis)
+                .WithMany(c => c.ValgiarastisReceptas)
+                .HasForeignKey(fk => fk.ValgiarastisId);
+            builder.Entity<ValgiarastisReceptas>()
+                .HasOne(m => m.Receptas)
+                .WithMany(c => c.ValgiarastisReceptas)
+                .HasForeignKey(fk => fk.ReceptasId);
             base.OnModelCreating(builder);
         }
     }

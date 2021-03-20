@@ -271,5 +271,12 @@
             <param name="foodMenuRecipeDTO"></param>
             <returns>Sport program object</returns>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ValgiarastisReceptasController.Delete(System.Int32)">
+            <summary>
+            Deletes recipe from food menu by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

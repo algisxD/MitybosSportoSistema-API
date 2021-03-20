@@ -22,9 +22,10 @@ namespace MitybosSportoSistema_API.Infrastructure.Repositories
             return await Save();
         }
 
-        public Task<bool> Delete(ValgiarastisReceptas entity)
+        public async Task<bool> Delete(ValgiarastisReceptas entity)
         {
-            throw new NotImplementedException();
+            _db.ValgiarasciaiReceptai.Remove(entity);
+            return await Save();
         }
 
         public Task<ICollection<ValgiarastisReceptas>> FindAll()
