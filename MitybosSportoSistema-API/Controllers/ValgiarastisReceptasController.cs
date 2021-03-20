@@ -95,8 +95,8 @@ namespace MitybosSportoSistema_API.Controllers
                     _logger.LogWarn($"{location}: Failed to retrieve record - id:{id}");
                     return NotFound();
                 }
-                var recipe = await _valgiarastisReceptasRepository.FindById(id);
-                var isSuccess = await _valgiarastisReceptasRepository.Delete(recipe);
+                var foodMenuRecipe = await _valgiarastisReceptasRepository.FindById(id);
+                var isSuccess = await _valgiarastisReceptasRepository.Delete(foodMenuRecipe);
                 if (!isSuccess)
                 {
                     return InternalError($"{location}: Delete operation failed - id:{id}");
