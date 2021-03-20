@@ -7,6 +7,7 @@ namespace MitybosSportoSistema_API.DTOs
 {
     public class ValgiarastisReceptasDTO
     {
+        public int Id { get; set; }
         public int ReceptasId { get; set; }
         public ReceptasDTO Receptas { get; set; }
 

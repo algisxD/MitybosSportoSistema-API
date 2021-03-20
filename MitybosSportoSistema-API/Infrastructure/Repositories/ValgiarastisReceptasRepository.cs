@@ -1,4 +1,5 @@
-﻿using MitybosSportoSistema_API.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MitybosSportoSistema_API.Data;
 using MitybosSportoSistema_API.Infrastructure.Database.Models;
 using System;
 using System.Collections.Generic;
@@ -33,14 +34,18 @@ namespace MitybosSportoSistema_API.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<ValgiarastisReceptas> FindById(int id)
+        public async Task<ValgiarastisReceptas> FindById(int id)
         {
-            throw new NotImplementedException();
+            var valgiarastisReceptas = await _db.ValgiarasciaiReceptai
+                .Include(o => o.Receptas)
+                .Include(q => q.Valgiarastis)
+                .FirstOrDefaultAsync(q => q.Id == id);
+            return valgiarastisReceptas;
         }
 
-        public Task<bool> isExists(int id)
+        public async Task<bool> isExists(int id)
         {
-            throw new NotImplementedException();
+            return await _db.ValgiarasciaiReceptai.AnyAsync(q => q.Id == id);
         }
 
         public async Task<bool> Save()

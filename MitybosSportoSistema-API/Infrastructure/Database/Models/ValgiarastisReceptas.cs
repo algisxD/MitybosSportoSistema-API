@@ -8,6 +8,7 @@ namespace MitybosSportoSistema_API.Infrastructure.Database.Models
 {
     public class ValgiarastisReceptas
     {
+        public int Id { get; set; }
         public int ReceptasId { get; set; }
         public Receptas Receptas { get; set; }
 
