@@ -9,5 +9,6 @@ namespace MitybosSportoSistema_API.Contracts
     public interface IReceptasRepository : IRepositoryBase<Receptas>
     {
         Task<ICollection<Receptas>> FindAllPublicRecipes();
+        Task<ICollection<Receptas>> GetByUserId(int userId);
     }
 }

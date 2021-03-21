@@ -94,6 +94,13 @@
             <param name="id"></param>
             <returns>A recipe record</returns>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.Get(System.Int32)">
+            <summary>
+            Gets recipes by user id
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
         <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.Create(MitybosSportoSistema_API.DTOs.ReceptasCreateDTO)">
             <summary>
             Creates a new recipe

@@ -114,6 +114,30 @@ namespace MitybosSportoSistema_API.Controllers
         }
 
         /// <summary>
+        /// Gets recipes by user id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> Get(int userId)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Attempted Get All recipes by userId");
+                var recipes = await _receptasRepository.GetByUserId(userId);
+                var response = _mapper.Map<ICollection<ReceptasDTO>>(recipes);
+                _logger.LogInfo($"{location}:Successfully got all recipes by uderId");
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{e.Message} - {e.InnerException}");
+
+            }
+        }
+
+        /// <summary>
         /// Creates a new recipe
         /// </summary>
         /// <param name="recipeDTO"></param>
