@@ -235,6 +235,53 @@ namespace MitybosSportoSistema_API.Controllers
             }
         }
 
+        /// <summary>
+        /// Update recipe status (public/private)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="recipeDTO"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateReceptasDTO recipeDTO)
+        {
+            var location = GetControllerActionNames();
+            try
+            {
+                _logger.LogInfo($"{location}: Update attempted - id: {id}");
+                if (id < 1 || recipeDTO == null || id != recipeDTO.Id)
+                {
+                    _logger.LogWarn($"{location}: Update failed with bada data - id: {id}");
+                    return BadRequest();
+                }
+                var isExists = await _receptasRepository.isExists(id);
+                if (!isExists)
+                {
+                    _logger.LogWarn($"{location}: Failed to retrieve record - id: {id}");
+                    return NotFound();
+                }
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarn($"{location}: Data was incomplete");
+                    return BadRequest(ModelState);
+                }
+                var recipe = _mapper.Map<Receptas>(recipeDTO);
+                var isSuccess = await _receptasRepository.Update(recipe);
+                if (!isSuccess)
+                {
+                    return InternalError($"{location}: Update operation failed with id: {id}");
+                }
+                _logger.LogWarn($"{location}: Record successfully updated id: {id}");
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return InternalError($"{location}: {e.Message} - {e.InnerException}");
+            }
+        }
+
         private string GetControllerActionNames()
         {
             var controller = ControllerContext.ActionDescriptor.ControllerName;

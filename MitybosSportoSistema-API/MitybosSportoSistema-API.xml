@@ -114,6 +114,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.Update(System.Int32,MitybosSportoSistema_API.DTOs.UpdateReceptasDTO)">
+            <summary>
+            Update recipe status (public/private)
+            </summary>
+            <param name="id"></param>
+            <param name="recipeDTO"></param>
+            <returns></returns>
+        </member>
         <member name="T:MitybosSportoSistema_API.Controllers.SportoProgramaController">
             <summary>
             Endpoint used to interact with the SportoPrograma in the SportoIrMitybos database
