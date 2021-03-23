@@ -10,5 +10,6 @@ namespace MitybosSportoSistema_API.Contracts
     {
         Task<ICollection<Receptas>> FindAllPublicRecipes();
         Task<ICollection<Receptas>> GetByUserId(int userId);
+        Task<ICollection<Receptas>> GetByFoodMenuId(int foodMenuId);
     }
 }

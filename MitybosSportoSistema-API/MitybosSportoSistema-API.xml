@@ -101,6 +101,13 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
+        <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.GetByFoodMenuId(System.Int32)">
+            <summary>
+            Gets recipes by food menu id
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
         <member name="M:MitybosSportoSistema_API.Controllers.ReceptasController.Create(MitybosSportoSistema_API.DTOs.ReceptasCreateDTO)">
             <summary>
             Creates a new recipe

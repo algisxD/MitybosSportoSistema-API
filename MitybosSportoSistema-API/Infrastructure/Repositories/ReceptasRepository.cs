@@ -61,6 +61,16 @@ namespace MitybosSportoSistema_API.Services
             return receptas;
         }
 
+        public async Task<ICollection<Receptas>> GetByFoodMenuId(int foodMenuId)
+        {
+            var receptai = _db.Receptai
+                .Where(i => i.ValgiarastisReceptas.Any( x => x.ValgiarastisId == foodMenuId))
+                .Include(o => o.ReceptoAutorius)
+                .Include(q => q.Ingridientai)
+                .ThenInclude(i => i.Produktas);
+            return await receptai.ToListAsync();
+        }
+
         public async Task<ICollection<Receptas>> GetByUserId(int userId)
         {
             var receptai = _db.Receptai

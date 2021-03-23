@@ -50,14 +50,19 @@ namespace MitybosSportoSistema_API.Infrastructure.Repositories
             var menu = await _db.Valgiarasciai
                 .Include(o => o.ValgiarastisReceptas)
                 .ThenInclude(q => q.Receptas)
+                .ThenInclude(i => i.Ingridientai)
+                .ThenInclude(p => p.Produktas)
                 .FirstOrDefaultAsync(q => q.Id == id);
-            return menu;        }
+            return menu;        
+        }
 
         public async Task<ICollection<Valgiarastis>> GetByUserId(int userId)
         {
             var menu = _db.Valgiarasciai.Where(i => i.VartotojasId == userId)
                 .Include(o => o.ValgiarastisReceptas)
-                .ThenInclude(q => q.Receptas);
+                .ThenInclude(q => q.Receptas)
+                .ThenInclude(i => i.Ingridientai)
+                .ThenInclude(p => p.Produktas);
             return await menu.ToListAsync();
         }
 
